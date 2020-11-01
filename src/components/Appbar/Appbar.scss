@@ -1,0 +1,36 @@
+.appbar-main-container{
+  min-height: 50px;
+  max-height: 70px;
+  height: 8vh;
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+
+  .container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .logo{
+
+  }
+
+  .card-page{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+      background-color: #45d7a5;
+    }
+  }
+
+  .corner{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+  }
+
+}
