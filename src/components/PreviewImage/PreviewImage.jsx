@@ -10,6 +10,7 @@ const PreviewImage = (props) => {
   
   const handleSelection = (e) => {
     setSelected(!selected);
+    props.selectCall(props.photo);
   }
 
   return (
@@ -23,8 +24,8 @@ const PreviewImage = (props) => {
         </div>
       </Tooltip>
       <img 
-        src={props.img || DefaultImage} 
-        alt={props.name || "default"}
+        src={props.photo? props.photo.img : DefaultImage} 
+        alt={props.photo? props.photo.id : "default"}
         className="img-default"
       />
     </div>
