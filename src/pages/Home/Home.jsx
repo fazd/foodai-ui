@@ -60,27 +60,39 @@ const Home = () => {
         className="container"
         // style={{opacity: show.itemOne }}
         id="presentation">
+        {/* <div className="main-logo">
+          <img src={LogoWords} alt="logo-words" height="100" width="400" />
+        </div> */}
         <div className="big-logo">
           <img src={Logo} alt="brain" height="250"/>
         </div>
         <div className="flex pres-body">
           <div className="text">
-            Estimación de calorias a base de reconocimiento de imagenes
-            usando deep learning
+            Conoce nuestro método de a base de reconocimiento 
+            de imagenes usando deep learning para 
+            la clasificación de alimentos y estimación de calorias 
           </div>
-          <Button 
-            variant="contained" 
-            className="btn-demo"
-            onClick={()=>scrollToRef(thirdRef)}>
-              Probar nuestro demo
-          </Button>
+          <div className="btn-group">
+            <Button 
+              variant="contained" 
+              className="btn-demo"
+              onClick={()=>scrollToRef(thirdRef)}>
+                Prueba nuestro demo
+            </Button>
+            <Button 
+              variant="contained" 
+              className="btn-demo"
+              onClick={()=>scrollToRef(secondRef)}>
+                Conoce nuestro método
+            </Button>
+          </div>
         </div>
       </div>
       {/* Here goes the about section */}
       <div 
         ref={secondRef} 
         className="container"
-        id="Algorithm"
+        id="algorithm"
         // style={{opacity: show.itemTwo}} 
       >
         <div className="title">

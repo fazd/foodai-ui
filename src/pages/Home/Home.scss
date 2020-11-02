@@ -12,6 +12,7 @@ $green-color: #45d7a5;
   margin-left: 3vw;
   overflow: auto;
   flex-direction: column;
+  
   .flex{
     display: flex;
     justify-content: center;
@@ -34,6 +35,8 @@ $green-color: #45d7a5;
       margin-bottom: 15%;
     }
 
+
+
   }
   
   #presentation{
@@ -47,7 +50,7 @@ $green-color: #45d7a5;
 
   .text{
     font-size: 24px;
-    width: 400px;
+    width: 500px;
     text-align: center;
     
     &-demo{
@@ -62,7 +65,7 @@ $green-color: #45d7a5;
     width: 250px;
     color: white;
     font-weight: 600;
-
+    margin-right: 10px;
     &:hover{
       background-color: $green-color;
     }
@@ -86,4 +89,8 @@ $green-color: #45d7a5;
     margin-right: 10px;
   }
 
+
+  .btn-group{
+    flex-direction: row;
+  }
 }

@@ -8,18 +8,20 @@ const Appbar = () => {
     <div className="appbar-main-container">
       <div className="flex container">
         <div className="flex logo">
-          <img src={LogoWords} alt="brain-logo" width="250"/>
+          <Link to="/home">
+            <img src={LogoWords} alt="brain-logo" width="250"/>
+          </Link>
         </div>
-        <Link className="flex card-page" to="/">
+        <Link className="flex card-page" to="/home">
           Inicio
         </Link>
         <Link className="flex card-page" to="/recipes">
           Mis recetas
         </Link>
-        <Link className="flex card-page" to="/#about">
+        <Link className="flex card-page" to="/home">
           Sobre el algoritmo
         </Link>
-        <Link className="flex card-page" to="/#demo">
+        <Link className="flex card-page" to="/home">
           Demo
         </Link>
         <Link className="corner flex card-page" to="/login">
