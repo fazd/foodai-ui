@@ -42,10 +42,6 @@ const Register = () => {
     return !(/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email));
   }
 
-  const equalPass = () => {
-    return password === passwordConf;
-  }
-
   const handleRegister = () => {
     if(password === passwordConf && validateEmail &&
       height > 0 && weight > 0){
