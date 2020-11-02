@@ -4,5 +4,9 @@
   background-image: url("./assets/space.jpg");
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 
 }

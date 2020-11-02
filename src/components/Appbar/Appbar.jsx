@@ -1,34 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Appbar.scss"
+import LogoWords from "../../assets/logo-words.png";
 
 const Appbar = () => {
   return (
     <div className="appbar-main-container">
-      <div className="container">
-        <div className="logo">
-          Here goes the logo
+      <div className="flex container">
+        <div className="flex logo">
+          <img src={LogoWords} alt="brain-logo" width="250"/>
         </div>
-        <div className="card-page">
+        <Link className="flex card-page" to="/">
           Inicio
-        </div>
-        <div className="card-page">
+        </Link>
+        <Link className="flex card-page" to="/recipes">
           Mis recetas
-        </div>
-        <div className="card-page">
+        </Link>
+        <Link className="flex card-page" to="/#about">
           Sobre el algoritmo
-        </div>
-        <div className="card-page">
+        </Link>
+        <Link className="flex card-page" to="/#demo">
           Demo
-        </div>
-        <div className="corner">
-          <div className="card-page">
-            Entrar
-          </div>
-          <div className="card-page">
-            Registro
-          </div>
-        </div>
-
+        </Link>
+        <Link className="corner flex card-page" to="/login">
+          Iniciar sesión
+        </Link>
       </div>
     </div>
   );

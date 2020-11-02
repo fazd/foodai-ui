@@ -1,0 +1,64 @@
+$green-color: #45d7a5;
+
+.home-main-container{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 3vw;
+  overflow: auto;
+  flex-direction: column;
+
+  .flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    border: 1px solid red;
+    margin: 5px;
+    padding: 15px;
+    margin-top: 15%;
+    /* &:first-child{
+      margin-top: 15%;
+    } */ 
+  }
+  
+  #presentation{
+    flex-direction: row;
+    
+    .pres-body{
+      margin-left: 20px;
+      flex-direction: column;
+    }
+  }
+
+
+
+  .text{
+    font-size: 32px;
+    width: 400px;
+    text-align: center;
+  }
+
+  .btn-demo{
+    background-color: $green-color;
+    margin-top: 10px;
+    width: 250px;
+    color: white;
+    font-weight: 600;
+    
+
+    &:hover{
+      background-color: $green-color;
+    }
+  }
+
+}
