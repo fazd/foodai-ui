@@ -5,6 +5,8 @@ import "./Home.scss";
 import Logo from "../../assets/logo-brain-2.svg";
 import LogoWords from "../../assets/caloriapp.png";
 import DefaultImage from "../../assets/defaultImage.jpg";
+import Result from "../../components/Result/Result";
+
 
 const Home = () => {
 
@@ -141,6 +143,7 @@ const Home = () => {
             </ol>
           </div>
           <ImageUploader />
+          <Result />
         </div>
       </div>
       <div className="rightside">

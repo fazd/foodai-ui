@@ -12,7 +12,7 @@ const Appbar = () => {
             <img src={LogoWords} alt="brain-logo" width="250"/>
           </Link>
         </div>
-        <Link className="flex card-page" to="/home">
+        <Link className="flex card-page" to="/home#demo">
           Inicio
         </Link>
         <Link className="flex card-page" to="/recipes">

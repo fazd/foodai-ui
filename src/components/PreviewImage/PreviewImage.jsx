@@ -18,7 +18,7 @@ const PreviewImage = (props) => {
         <div className={selected ? "selected" : "not-selected"}>
           {
           selected ?
-            <img src={Check} alt="done" height="25"/>
+            <img src={Check} alt="done" height="15"/>
           : null}
         </div>
       </Tooltip>
