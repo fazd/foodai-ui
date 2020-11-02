@@ -61,4 +61,21 @@ $green-color: #45d7a5;
     }
   }
 
+
+  .animation{
+    transform: translateX(0);
+  }
+
+  .minus{
+    transform: translateX(-100vw);
+  }
+
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    display: flex; 
+  }
+
+
 }
