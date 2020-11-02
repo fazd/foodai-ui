@@ -1,8 +1,11 @@
 import React, {useLayoutEffect, useRef, useState } from "react";
 import Button from "@material-ui/core/Button";
+import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import "./Home.scss";
 import Logo from "../../assets/logo-brain-2.svg";
 import LogoWords from "../../assets/caloriapp.png";
+
+
 const Home = () => {
 
   const firstRef = useRef(null);
@@ -108,7 +111,7 @@ const Home = () => {
             <li>Presiona el botón de estimar</li>
           </ol>
         </div>
-        
+        <ImageUploader />
       </div>
      
     </div>

@@ -23,7 +23,6 @@ $green-color: #45d7a5;
     flex-direction: column;
     margin: 20px;
     width: 50%;
-    border: 1px solid red;
     margin: 5px;
     padding: 15px;
     margin-top: 35%;
@@ -80,6 +79,9 @@ $green-color: #45d7a5;
     }
   }
 
+  #demo{
+    width: 70%;
+  }
   .demo-logo{
     margin-right: 10px;
   }
