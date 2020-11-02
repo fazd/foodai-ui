@@ -2,13 +2,14 @@ import React, {useLayoutEffect, useRef, useState } from "react";
 import Button from "@material-ui/core/Button";
 import "./Home.scss";
 import Logo from "../../assets/logo-brain-2.svg";
-
+import LogoWords from "../../assets/caloriapp.png";
 const Home = () => {
 
   const firstRef = useRef(null);
   const secondRef = useRef(null);
   const thirdRef = useRef(null);
-  
+  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
+
   const [show, setShow] = useState(
     {itemOne: 1, 
       itemTwo: 1, 
@@ -54,7 +55,7 @@ const Home = () => {
     <div className="home-main-container">
       <div ref={firstRef} 
         className="container"
-        style={{opacity: show.itemOne }}
+        // style={{opacity: show.itemOne }}
         id="presentation">
         <div className="big-logo">
           <img src={Logo} alt="brain" height="250"/>
@@ -64,7 +65,10 @@ const Home = () => {
             Estimación de calorias a base de reconocimiento de imagenes
             usando deep learning
           </div>
-          <Button variant="contained" className="btn-demo" >
+          <Button 
+            variant="contained" 
+            className="btn-demo"
+            onClick={()=>scrollToRef(thirdRef)}>
               Probar nuestro demo
           </Button>
         </div>
@@ -73,34 +77,38 @@ const Home = () => {
       <div 
         ref={secondRef} 
         className="container"
-        style={{opacity: show.itemTwo}} 
+        id="Algorithm"
+        // style={{opacity: show.itemTwo}} 
       >
-        <div className="big-logo">
-          Here goes the bigLogo
+        <div className="title">
+          <span className="about-word">Sobre </span> 
+          <img src={LogoWords} alt="logo" height="100" width="400"/>
         </div>
         <div className="text">
-          Estimación de calorias a base de reconocimiento de imagenes
-          usando deep learning
+          <p>Lorem ipsum</p>
         </div>
-        <Button variant="contained" className="btn-demo" >
-            Probar nuestro demo
-        </Button>
       </div>
       <div 
         ref={thirdRef} 
         className="container"
-        style={{opacity: show.itemThree }}
+        id="demo"
+        // style={{opacity: show.itemThree }}
       >
-        <div className="big-logo">
-          Here goes the bigLogo
+        <div className="title">
+          <img src={LogoWords} alt="logo" className="demo-logo" height="100" width="400"/>
+          <span className="about-word">Demo</span> 
         </div>
-        <div className="text">
-          Estimación de calorias a base de reconocimiento de imagenes
-          usando deep learning
+        <div className="text-demo">
+          <p>
+            Prueba nuestro demo siguiendo los siguientes pasos:
+          </p>
+          <ol>
+            <li>Subir la imagen que desees tamaño minimo: 960x960 pixeles</li>
+            <li>Selecciona las imagenes que contengan la comida que desees analizar</li>
+            <li>Presiona el botón de estimar</li>
+          </ol>
         </div>
-        <Button variant="contained" className="btn-demo" >
-            Probar nuestro demo
-        </Button>
+        
       </div>
      
     </div>
