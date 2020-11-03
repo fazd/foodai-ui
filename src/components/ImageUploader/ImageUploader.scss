@@ -15,9 +15,33 @@
     align-self: center;
     color:white;
     font-weight: 600;
-
     &:hover{
       background-color: #45d7a5;
     }
+  }
+
+  .im-preview{
+    height: 400px;
+    width: 400px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 20px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+    img{
+      border-radius: 10px;
+      margin:10px;
+      max-height: 325px;
+      max-width: 325px;
+    }
+  }
+
+
+  .mar{
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }
