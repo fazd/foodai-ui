@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react"
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import DefaultImage from "../../assets/defaultImage.jpg";
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Button from "@material-ui/core/Button";
 import "./Result.scss"
 
 
@@ -60,6 +61,12 @@ const Result = (props) => {
               <BorderLinearProgress variant="determinate" value={1} />
             </div>
           </div>
+          <Button
+            variant="contained" 
+            className="btn-upload"
+          >
+              Guardar imagen
+          </Button>
         </div>
 
       </div>

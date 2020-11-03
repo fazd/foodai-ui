@@ -143,7 +143,6 @@ const Home = () => {
             </ol>
           </div>
           <ImageUploader />
-          <Result />
         </div>
       </div>
       <div className="rightside">

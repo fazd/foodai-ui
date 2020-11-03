@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react"
 import "./PreviewImagesList.scss";
-
 import PreviewImage from "../PreviewImage/PreviewImage"; 
-
 import DefaultImage from "../../assets/defaultImage.jpg";
+import Button from "@material-ui/core/Button";
+
 
 const PreviewImagesList = (props) =>{
   
@@ -45,7 +45,6 @@ const PreviewImagesList = (props) =>{
 
   const handlePhotosUpdate = (data) =>{
     let aux = selectedPhotos;
-    console.log(aux);
     const idx = aux.findIndex(dt => dt === data);
     if(idx !== -1){
       aux.splice(idx,1);
@@ -54,18 +53,35 @@ const PreviewImagesList = (props) =>{
       aux.push(data);
     }
     setSelectedPhotos(aux);
-    console.log("Was added", selectedPhotos);
+  }
+
+
+  const handleSubmit = () =>{
+    props.next(selectedPhotos);
   }
 
   return (
     <div className="preview-main-container">
-      {
-        photos.map( (photo) =>  {
-          return(
-            <PreviewImage key={photo.id} photo={photo} selectCall={handlePhotosUpdate} />
-          );
-        })
-      }
+      <div className="images">
+        {
+          photos.map( (photo) =>  {
+            return(
+              <PreviewImage key={photo.id} photo={photo} selectCall={handlePhotosUpdate} />
+            );
+          })
+        }
+      </div>
+      <div className="btn-place">
+        <Button
+          variant="contained" 
+          className="btn-phase" 
+          component="span" 
+          onClick={handleSubmit}
+        >
+          Estimar
+        </Button>
+
+      </div>
       
     </div>
   );

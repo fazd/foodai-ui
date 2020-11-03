@@ -12,8 +12,27 @@
   flex-wrap: wrap;
   max-height: 700px;
   overflow-y: scroll;
-  overflow-x: hidden; 
+  overflow-x: hidden;
+  flex-direction: row; 
 
+
+  .images{
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    width: 100%;
+    min-height: 500px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    flex-wrap: wrap;
+    max-height: 700px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+  }
+  
   &::-webkit-scrollbar {
     width: 0.2em;
   }
@@ -26,5 +45,26 @@
     background-color: #45d7a5;
     outline: 1px solid #45d7a5;
   }
+
+  .btn-phase{
+    width: 150px;
+    height: 50px;
+    background-color: #45d7a5;
+    border-radius: 10px;
+    align-self: center;
+    color:white;
+    font-weight: 600;
+    align-self: flex-end;
+    &:hover{
+      background-color: #45d7a5;
+    }
+  }
+
+  .btn-place{
+    display: flex;
+    width: 80%;
+    justify-content: flex-end;
+  }
+
 
 }
