@@ -24,8 +24,8 @@ const PreviewImage = (props) => {
         </div>
       </Tooltip>
       <img 
-        src={props.photo? props.photo.img : DefaultImage} 
-        alt={props.photo? props.photo.id : "default"}
+        src={props.photo? "data:image/jpeg;base64," + props.photo : DefaultImage} 
+        alt={props.photo? props.id : "default"}
         className="img-default"
       />
     </div>
