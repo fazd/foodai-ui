@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react"
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React from "react"
+import { withStyles } from '@material-ui/core/styles';
 import DefaultImage from "../../assets/defaultImage.jpg";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from "@material-ui/core/Button";

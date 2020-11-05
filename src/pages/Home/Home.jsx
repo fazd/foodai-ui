@@ -4,9 +4,15 @@ import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import "./Home.scss";
 import Logo from "../../assets/logo-brain-2.svg";
 import LogoWords from "../../assets/caloriapp.png";
-import DefaultImage from "../../assets/defaultImage.jpg";
-import Result from "../../components/Result/Result";
 
+import DefaultImage from "../../assets/defaultImage.jpg";
+import Image1 from "../../assets/sample_images/image1.jpg";
+import Image2 from "../../assets/sample_images/image2.jpg";
+import Image3 from "../../assets/sample_images/image3.jpg";
+import Image4 from "../../assets/sample_images/image4.jpg";
+import Image5 from "../../assets/sample_images/image5.jpg";
+import Image6 from "../../assets/sample_images/image6.jpg";
+import Image7 from "../../assets/sample_images/image7.jpg";
 
 const Home = () => {
 
@@ -152,25 +158,25 @@ const Home = () => {
           id="imagesPreviews"
         >
           <div className={`image-ball ${scrolled? "move-1" : ""}`} id="img-1">
-            <img src={DefaultImage} alt=""/> 
+            <img src={Image1} alt=""/> 
           </div>
           <div className={`image-ball ${scrolled? "move-2" : ""}`} id="img-2">
-            <img src={DefaultImage} alt=""/> 
+            <img src={Image2} alt=""/> 
           </div>
           <div className={`image-ball ${scrolled? "move-3" : ""}`} id="img-3">
-            <img src={DefaultImage} alt=""/> 
+            <img src={Image3} alt=""/> 
           </div>
           <div className={`image-ball ${scrolled? "move-4" : ""}`} id="img-4">
-            <img src={DefaultImage} alt=""/> 
+            <img src={Image4} alt=""/> 
           </div>
           <div className={`image-ball ${scrolled? "move-5" : ""}`} id="img-5">
-            <img src={DefaultImage} alt=""/> 
+            <img src={Image5} alt=""/> 
           </div>
           <div className={`image-ball ${scrolled? "move-6" : ""}`} id="img-6">
-            <img src={DefaultImage} alt=""/> 
+            <img src={Image6} alt=""/> 
           </div>
           <div className={`image-ball ${scrolled? "move-7" : ""}`} id="img-7">
-            <img src={DefaultImage} alt=""/> 
+            <img src={Image7} alt=""/> 
           </div>
         </div>
       </div>

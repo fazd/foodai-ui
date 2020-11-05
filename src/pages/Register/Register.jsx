@@ -6,6 +6,15 @@ import Button from "@material-ui/core/Button";
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {Link} from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+import * as RegisterService from "../../services/RegisterService";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 
 
 const Register = () => {
@@ -14,6 +23,22 @@ const Register = () => {
   const [passwordConf, setPasswordConf] = useState('');
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
+
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
 
   const handleEmailChange = (e) => {
     e.persist();
@@ -46,14 +71,27 @@ const Register = () => {
     if(password === passwordConf && validateEmail &&
       height > 0 && weight > 0){
         const body = {
-          email: email,
-          password: password,
-          height: height,
-          weight: weight,
+          "email": email,
+          "password": password,
+          //height: height,
+          //weight: weight,
         };
+        console.log("send");
+        
+        RegisterService.create(body).then(
+          (response) => {
+            if(response.access_token){
+              setPassword('');
+              setEmail('');
+              setOpen(true);
+              setTimeout( ()=>{
+                window.open("/home");
+              }, 1500);
+            }
+          }
+        );
     }
-    setPassword('');
-    setEmail('');
+    
   }
   return (
     <div className="register-main-container">
@@ -94,8 +132,8 @@ const Register = () => {
           autoComplete="current-password"
           variant="outlined"
           value={passwordConf}
-          error={password !== '' && password === passwordConf}
-          helperText={(password !== '' && password === passwordConf) ? "Las contraseñas no coinciden" : "" }
+          error={password !== '' && password !== passwordConf}
+          helperText={(password !== '' && password !== passwordConf) ? "Las contraseñas no coinciden" : "" }
           onChange={handlePasswordConfChange}
         />
         <div className="imc">
@@ -136,6 +174,11 @@ const Register = () => {
           </Link>
         </div>
       </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          Registro existoso
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

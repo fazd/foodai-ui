@@ -4,27 +4,44 @@ import Button from "@material-ui/core/Button";
 import PreviewImagesList from "../PreviewImagesList/PreviewImagesList";
 import Result from "../Result/Result";
 import DefaultPhoto from "../../assets/defaultImage.jpg";
+import * as ImageService from "../../services/ImageService";
 
 const ImageUploader = (props) => {
 
   const [image, setImg] = useState('');
+  const [imageFile, setImgFile] = useState('');
   const [phase, setPhase] = useState(0);
   const [imageList, setImageList] = useState([]);
 
   const handleFile = (event) => {
     console.log(event.target.files[0]);
+    setImgFile(event.target.files[0]);
     setImg(URL.createObjectURL(event.target.files[0]));
     console.log(image);
   } 
 
   const handleSubmit = () =>{
-    // Fetch database 
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    ImageService.uploadImage(formData).then(
+      (response) => {
+        console.log(response);
+        setImageList(response.data.result);
+      }
+    );
+
     setPhase(1);
   }
 
   const handleImageList = (data) =>{
-    setImageList(data);
-    //Fetch database
+    const formData = new FormData();
+    formData.append("image", data);
+    ImageService.sendSelectedImage(formData).then(
+      (response) => {
+        console.log(response);
+        setImageList(response.data.result);
+      }
+    );
     setPhase(2);
   }
 
@@ -64,7 +81,7 @@ const ImageUploader = (props) => {
           </div>
         </>
         : ( phase === 1 ? 
-          <PreviewImagesList next={handleImageList} />
+          <PreviewImagesList key={imageList.length} imageList={imageList} next={handleImageList} />
           : (
             <Result img={image}/> 
           )
