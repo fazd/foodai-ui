@@ -34,8 +34,14 @@ const ImageUploader = (props) => {
   }
 
   const handleImageList = (data) =>{
-    setImageList(data);
-    //Fetch database
+    const formData = new FormData();
+    formData.append("image", data);
+    ImageService.sendSelectedImage(formData).then(
+      (response) => {
+        console.log(response);
+        setImageList(response.data.result);
+      }
+    );
     setPhase(2);
   }
 

@@ -38,7 +38,7 @@ const PreviewImagesList = (props) =>{
         {
           photos.map( (photo) =>  {
             return(
-              <PreviewImage key={photo} photo={photo} selectCall={handlePhotosUpdate} />
+              <PreviewImage key={photo.name} name={photo.name} photo={photo.img} selectCall={handlePhotosUpdate} />
             );
           })
         }
