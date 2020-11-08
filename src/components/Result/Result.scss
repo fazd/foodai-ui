@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 500px;
+  height: 600px;
   border-radius: 50px;
   background-color: rgba(0,0,0,0.2);
   flex-direction: column;
@@ -43,6 +43,20 @@
     }
   }
 
+  .btn-group{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 90%;
+
+  }
+
+  .btn-upload{
+    width: 170px;
+    height: 40px;
+    margin-right: 20px;
+  }
+
   .results{
     display: flex;
     width: 50%;
@@ -74,11 +88,27 @@
   .result-cat{
     width: 100%;
     margin: 5px;
+    display: flex;
+    flex-direction: row;
     span{
       font-size: 18px;
       font-weight: 600;
     }
   }
 
+  .bar{
+    width: 95%;
+  }
 
+  .check{
+    padding-top: 9px;
+  }
+
+  .MuiCheckbox-colorSecondary.Mui-checked{
+    color: #45d7a5;
+  }
+
+  .MuiCheckbox-root{
+    color:white;
+  }
 }
