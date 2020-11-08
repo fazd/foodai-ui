@@ -4,7 +4,9 @@ import DefaultImage from "../../assets/defaultImage.jpg";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from "@material-ui/core/Button";
 import Checkbox from '@material-ui/core/Checkbox';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
+import 'react-circular-progressbar/dist/styles.css';
 import "./Result.scss"
 
 
@@ -32,6 +34,8 @@ const Result = (props) => {
     Four: false,
     Five: false,
   });
+  
+  const [categories, setCategories] = useState([]);
 
   const handleChangeOne = (event) => {
     //event.persist();
@@ -84,22 +88,23 @@ const Result = (props) => {
   };
 
   const handleEstimate = () => {
-    let categories = [];
+    let categoriesAux = [];
     if(checked.One){
-      categories.push(data[0].category);
+      categoriesAux.push(data[0].category);
     }
     if(checked.Two){
-      categories.push(data[1].category);
+      categoriesAux.push(data[1].category);
     }
     if(checked.Three){
-      categories.push(data[2].category);
+      categoriesAux.push(data[2].category);
     }
     if(checked.Four){
-      categories.push(data[3].category);
+      categoriesAux.push(data[3].category);
     }
     if(checked.Five){
-      categories.push(data[4].category);
+      categoriesAux.push(data[4].category);
     }
+    setCategories(categoriesAux);
     console.log(categories);
   }
 
@@ -229,7 +234,27 @@ const Result = (props) => {
             </Button>
           </div>
         </div>
-
+      </div>
+      <div className="prediction">
+        <div className="text">
+          <h2>Resultados:</h2>
+          <p>
+            Dentro de la imagen se encuentra:
+            <ul>
+              {
+                categories.map( (category) => {
+                  return (
+                  <li><strong>{category}</strong> con una cantidad calorica de {0}</li>
+                  );
+                })
+              }
+            </ul>
+            Para un total de {0} calorias en una porción.
+          </p>
+        </div>
+        <div className="cicr-prog">
+          <CircularProgressbar value={80} text={`${60} Cal`} className="circ-bar" />
+        </div>
       </div>
     </div>
   )

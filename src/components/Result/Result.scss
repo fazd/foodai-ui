@@ -4,7 +4,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 600px;
   border-radius: 50px;
   background-color: rgba(0,0,0,0.2);
   flex-direction: column;
@@ -104,6 +103,29 @@
     padding-top: 9px;
   }
 
+
+  .prediction{
+    width: 90%;
+    padding: 20px;
+    padding-top: 10px;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+
+  .text{
+    font-size: 20px;
+    text-align: start;
+  }
+
+  .cicr-prog{
+    display: flex;
+    .circ-bar{
+      height: 250px;
+    }
+  }
   .MuiCheckbox-colorSecondary.Mui-checked{
     color: #45d7a5;
   }
