@@ -36,6 +36,7 @@ const Result = (props) => {
   });
   
   const [categories, setCategories] = useState([]);
+  const [estimation, setEstimation] = useState(false);
 
   const handleChangeOne = (event) => {
     //event.persist();
@@ -106,6 +107,7 @@ const Result = (props) => {
     }
     setCategories(categoriesAux);
     console.log(categories);
+    setEstimation(true);
   }
 
   const data = [
@@ -235,27 +237,29 @@ const Result = (props) => {
           </div>
         </div>
       </div>
-      <div className="prediction">
-        <div className="text">
-          <h2>Resultados:</h2>
-          <p>
-            Dentro de la imagen se encuentra:
-            <ul>
-              {
-                categories.map( (category) => {
-                  return (
-                  <li><strong>{category}</strong> con una cantidad calorica de {0}</li>
-                  );
-                })
-              }
-            </ul>
-            Para un total de {0} calorias en una porción.
-          </p>
-        </div>
-        <div className="cicr-prog">
-          <CircularProgressbar value={80} text={`${60} Cal`} className="circ-bar" />
-        </div>
-      </div>
+      {estimation ? 
+        <div id="prediction">
+          <div id="text">
+            <h2>Resultados:</h2>
+            <p>
+              Dentro de la imagen se encuentra:
+              <ul>
+                {
+                  categories.map( (category) => {
+                    return (
+                    <li><strong>{category}</strong> con una cantidad calorica de {0}</li>
+                    );
+                  })
+                }
+              </ul>
+              Para un total de {0} calorias en una porción.
+            </p>
+          </div>
+          <div className="cicr-prog">
+            <CircularProgressbar value={80} text={`${60} Cal`} className="circ-bar" />
+          </div>
+        </div> 
+      : null }
     </div>
   )
 };

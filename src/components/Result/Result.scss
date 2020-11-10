@@ -7,7 +7,7 @@
   border-radius: 50px;
   background-color: rgba(0,0,0,0.2);
   flex-direction: column;
-
+  
   .header{
     padding: 10px;
     width: 100%;
@@ -33,6 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 20px;
     img{
       width: 100%;
       height: 100%;
@@ -46,12 +47,12 @@
     display: flex;
     flex-direction: row;
     align-self: center;
-    width: 90%;
+    width: 92%;
 
   }
 
   .btn-upload{
-    width: 170px;
+    width: 175px;
     height: 40px;
     margin-right: 20px;
   }
@@ -90,7 +91,6 @@
     display: flex;
     flex-direction: row;
     span{
-      font-size: 18px;
       font-weight: 600;
     }
   }
@@ -100,11 +100,11 @@
   }
 
   .check{
-    padding-top: 9px;
+    padding-top: 5px;
   }
 
 
-  .prediction{
+  #prediction{
     width: 90%;
     padding: 20px;
     padding-top: 10px;
@@ -115,15 +115,19 @@
     align-content: flex-start;
   }
 
-  .text{
-    font-size: 20px;
+  #text{
+    font-size: 1em;
     text-align: start;
+    margin-right: 10px;
   }
 
   .cicr-prog{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
     .circ-bar{
-      height: 250px;
+      height: 70%;
     }
   }
   .MuiCheckbox-colorSecondary.Mui-checked{
@@ -132,5 +136,12 @@
 
   .MuiCheckbox-root{
     color:white;
+  }
+
+  .CircularProgressbar .CircularProgressbar-path{
+    stroke:#45d7a5;
+  }
+  .CircularProgressbar .CircularProgressbar-text{
+    fill: #45d7a5;
   }
 }
