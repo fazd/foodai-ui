@@ -1,10 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { withStyles } from '@material-ui/core/styles';
 import DefaultImage from "../../assets/defaultImage.jpg";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from "@material-ui/core/Button";
 import Checkbox from '@material-ui/core/Checkbox';
 import { CircularProgressbar } from 'react-circular-progressbar';
+
+import * as ImageService from "../../services/ImageService";
+
 
 import 'react-circular-progressbar/dist/styles.css';
 import "./Result.scss"
@@ -35,8 +38,35 @@ const Result = (props) => {
     Five: false,
   });
   
+  const [cat, setCat] = useState({
+    Carne: 0,
+    Pollo: 0,
+    Arroz: 0,
+    Pasta: 0,
+    Pure: 0,
+    Salmon: 0,
+    Ensalada: 0,
+  });
+  
+  const order = ["Carne", "Pollo", "Arroz", "Pasta", "Pure", "Salmon", "Ensalada"]
+
   const [categories, setCategories] = useState([]);
   const [estimation, setEstimation] = useState(false);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const data = props.estimation;
+    setCategories({...cat, Carne: data.carne});
+    setCategories({...cat, Pollo: data.pollo});
+    setCategories({...cat, Arroz: data.arroz});
+    setCategories({...cat, Pasta: data.pasta});
+    setCategories({...cat, Pure: data.pure});
+    setCategories({...cat, Salmon: data.salmon});
+    setCategories({...cat, Ensalada: data.ensalada});
+    console.log(data);
+    console.log(cat);
+  },[]);
+
 
   const handleChangeOne = (event) => {
     //event.persist();
@@ -107,6 +137,15 @@ const Result = (props) => {
     }
     setCategories(categoriesAux);
     console.log(categories);
+    const formData = new FormData();
+    formData.append("check",categoriesAux );
+    ImageService.getEstimation(formData).then(
+      (response) => {
+        console.log(response);
+        setTotal(response);
+      } 
+    );
+
     setEstimation(true);
   }
 
@@ -151,8 +190,8 @@ const Result = (props) => {
           <div className="result-table">            
             <div className="result-cat">
               <div className="bar">
-                <span>{data[0].category+': '+data[0].value}%</span>
-                <BorderLinearProgress variant="determinate" value={data[0].value} />
+                <span>{order[0]+': '+props.estimation.carne}%</span>
+                <BorderLinearProgress variant="determinate" value={props.estimation.carne} />
               </div>
               <div className="check">
                 <Checkbox
@@ -165,8 +204,8 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{data[1].category+': '+data[1].value}%</span>
-                <BorderLinearProgress variant="determinate" value={data[1].value} />
+                <span>{order[1]+': '+props.estimation.pollo}%</span>
+                <BorderLinearProgress variant="determinate" value={props.estimation.pollo} />
               </div>
               <div className="check">
                 <Checkbox
@@ -179,8 +218,8 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{data[2].category+': '+data[2].value}%</span>
-                <BorderLinearProgress variant="determinate" value={data[2].value} />
+                <span>{order[2]+': '+props.estimation.arroz}%</span>
+                <BorderLinearProgress variant="determinate" value={props.estimation.arroz} />
               </div>
               <div className="check">
                 <Checkbox
@@ -193,8 +232,8 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{data[3].category+': '+data[3].value}%</span>
-                <BorderLinearProgress variant="determinate" value={data[3].value} />
+                <span>{order[3]+': '+props.estimation.pasta}%</span>
+                <BorderLinearProgress variant="determinate" value={props.estimation.pasta} />
               </div>
               <div className="check">
                 <Checkbox
@@ -207,8 +246,36 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{data[4].category+': '+data[4].value}%</span>
-                <BorderLinearProgress variant="determinate" value={data[4].value} />
+                <span>{order[4]+': '+props.estimation.pure}%</span>
+                <BorderLinearProgress variant="determinate" value={props.estimation.pure} />
+              </div>
+              <div className="check">
+                <Checkbox
+                  checked={checked.Five}
+                  onClick={handleChangeFive}
+                  name="five"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                />
+              </div>
+            </div>
+            <div className="result-cat">
+              <div className="bar">
+                <span>{order[5]+': '+props.estimation.salmon}%</span>
+                <BorderLinearProgress variant="determinate" value={props.estimation.salmon} />
+              </div>
+              <div className="check">
+                <Checkbox
+                  checked={checked.Five}
+                  onClick={handleChangeFive}
+                  name="five"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                />
+              </div>
+            </div>
+            <div className="result-cat">
+              <div className="bar">
+                <span>{order[6]+': '+props.estimation.ensalada}%</span>
+                <BorderLinearProgress variant="determinate" value={props.estimation.ensalada} />
               </div>
               <div className="check">
                 <Checkbox
@@ -252,11 +319,11 @@ const Result = (props) => {
                   })
                 }
               </ul>
-              Para un total de {0} calorias en una porción.
+              Para un total de {total} calorias en una porción.
             </p>
           </div>
           <div className="cicr-prog">
-            <CircularProgressbar value={80} text={`${60} Cal`} className="circ-bar" />
+            <CircularProgressbar value={total} text={`${total} Cal`} className="circ-bar" />
           </div>
         </div> 
       : null }
