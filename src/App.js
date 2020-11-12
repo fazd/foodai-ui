@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Recipes from "./pages/Recipes/Recipes";
 import Footer from "./components/Footer/Footer";
 import Appbar from "./components/Appbar/Appbar";
 
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/recipes">
+            <Recipes />
           </Route>
         </Switch>
         <Footer />

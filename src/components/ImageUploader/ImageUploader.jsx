@@ -12,6 +12,7 @@ const ImageUploader = (props) => {
   const [imageFile, setImgFile] = useState('');
   const [phase, setPhase] = useState(0);
   const [imageList, setImageList] = useState([]);
+  const [estimation, setEstimation] = useState([]);
 
   const handleFile = (event) => {
     console.log(event.target.files[0]);
@@ -39,10 +40,11 @@ const ImageUploader = (props) => {
     ImageService.sendSelectedImage(formData).then(
       (response) => {
         console.log(response);
-        setImageList(response.data.result);
+        setEstimation(response);
+        //setImageList(response.data.result);
+        setPhase(2);
       }
     );
-    setPhase(2);
   }
 
   return (
@@ -83,7 +85,7 @@ const ImageUploader = (props) => {
         : ( phase === 1 ? 
           <PreviewImagesList key={imageList.length} imageList={imageList} next={handleImageList} />
           : (
-            <Result img={image}/> 
+            <Result img={image} estimation={estimation}/> 
           )
         )}
 

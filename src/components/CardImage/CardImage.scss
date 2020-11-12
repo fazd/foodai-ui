@@ -1,0 +1,33 @@
+.card-image-container{
+  border-radius: 20px;
+  height: 250px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:all 0.4s ease;
+  cursor: pointer;
+  margin: 20px;
+  img{
+    border-radius: 20px;
+    height: 250px;
+    width: 250px;
+
+    &:hover{
+      box-shadow: 0 0 10px 5px #45d7a5;
+      -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      transform: scale(0.9);
+      transition:all 0.4s ease;    
+    }
+  
+    &:not(:hover){
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+      transition:all 0.4s ease;  
+    }
+  }
+
+
+}
