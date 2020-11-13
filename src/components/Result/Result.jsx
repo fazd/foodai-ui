@@ -36,16 +36,8 @@ const Result = (props) => {
     Three: false,
     Four: false,
     Five: false,
-  });
-  
-  const [cat, setCat] = useState({
-    Carne: 0,
-    Pollo: 0,
-    Arroz: 0,
-    Pasta: 0,
-    Pure: 0,
-    Salmon: 0,
-    Ensalada: 0,
+    Six: false,
+    Seven: false,
   });
   
   const order = ["Carne", "Pollo", "Arroz", "Pasta", "Pure", "Salmon", "Ensalada"]
@@ -54,19 +46,7 @@ const Result = (props) => {
   const [estimation, setEstimation] = useState(false);
   const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    const data = props.estimation;
-    setCategories({...cat, Carne: data.carne});
-    setCategories({...cat, Pollo: data.pollo});
-    setCategories({...cat, Arroz: data.arroz});
-    setCategories({...cat, Pasta: data.pasta});
-    setCategories({...cat, Pure: data.pure});
-    setCategories({...cat, Salmon: data.salmon});
-    setCategories({...cat, Ensalada: data.ensalada});
-    console.log(data);
-    console.log(cat);
-  },[]);
-
+  
 
   const handleChangeOne = (event) => {
     //event.persist();
@@ -118,25 +98,50 @@ const Result = (props) => {
     }
   };
 
+  const handleChangeSix = (event) => {
+    event.persist();
+    if(checked.Six){
+      setChecked({...checked, Six: false});
+    }
+    else{
+      setChecked({...checked, Six: true});
+    }
+  };
+
+  const handleChangeSeven = (event) => {
+    event.persist();
+    if(checked.Seven){
+      setChecked({...checked, Seven: false});
+    }
+    else{
+      setChecked({...checked, Seven: true});
+    }
+  };
+
   const handleEstimate = () => {
     let categoriesAux = [];
     if(checked.One){
-      categoriesAux.push(data[0].category);
+      categoriesAux.push(order[0]);
     }
     if(checked.Two){
-      categoriesAux.push(data[1].category);
+      categoriesAux.push(order[1]);
     }
     if(checked.Three){
-      categoriesAux.push(data[2].category);
+      categoriesAux.push(order[2]);
     }
     if(checked.Four){
-      categoriesAux.push(data[3].category);
+      categoriesAux.push(order[3]);
     }
     if(checked.Five){
-      categoriesAux.push(data[4].category);
+      categoriesAux.push(order[4]);
+    }
+    if(checked.Six){
+      categoriesAux.push(order[5]);
+    }
+    if(checked.Seven){
+      categoriesAux.push(order[6]);
     }
     setCategories(categoriesAux);
-    console.log(categories);
     const formData = new FormData();
     formData.append("check",categoriesAux );
     ImageService.getEstimation(formData).then(
@@ -149,28 +154,7 @@ const Result = (props) => {
     setEstimation(true);
   }
 
-  const data = [
-    {
-      category: "carne",
-      value: "80"
-    },
-    {
-      category: "Pollo",
-      value: "70"
-    },
-    {
-      category: "Salmon",
-      value: "80"
-    },
-    {
-      category: "Puré de papa",
-      value: "60"
-    },
-    {
-      category: "Arroz",
-      value: "50"
-    },
-  ];
+
 
   return(
     <div className="result-main-container">
@@ -190,7 +174,7 @@ const Result = (props) => {
           <div className="result-table">            
             <div className="result-cat">
               <div className="bar">
-                <span>{order[0]+': '+props.estimation.carne}%</span>
+                <span>{'Carne: '+props.estimation.carne.toFixed(3)}%</span>
                 <BorderLinearProgress variant="determinate" value={props.estimation.carne} />
               </div>
               <div className="check">
@@ -204,7 +188,7 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{order[1]+': '+props.estimation.pollo}%</span>
+                <span>{'Pollo: '+props.estimation.pollo.toFixed(3)}%</span>
                 <BorderLinearProgress variant="determinate" value={props.estimation.pollo} />
               </div>
               <div className="check">
@@ -218,7 +202,7 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{order[2]+': '+props.estimation.arroz}%</span>
+                <span>{'Arroz: '+props.estimation.arroz.toFixed(3)}%</span>
                 <BorderLinearProgress variant="determinate" value={props.estimation.arroz} />
               </div>
               <div className="check">
@@ -232,7 +216,7 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{order[3]+': '+props.estimation.pasta}%</span>
+                <span>{'Pasta: '+props.estimation.pasta.toFixed(3)}%</span>
                 <BorderLinearProgress variant="determinate" value={props.estimation.pasta} />
               </div>
               <div className="check">
@@ -246,7 +230,7 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{order[4]+': '+props.estimation.pure}%</span>
+                <span>{'Pure: '+props.estimation.pure.toFixed(3)}%</span>
                 <BorderLinearProgress variant="determinate" value={props.estimation.pure} />
               </div>
               <div className="check">
@@ -260,13 +244,13 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{order[5]+': '+props.estimation.salmon}%</span>
+                <span>{'Salmon: '+props.estimation.salmon.toFixed(3)}%</span>
                 <BorderLinearProgress variant="determinate" value={props.estimation.salmon} />
               </div>
               <div className="check">
                 <Checkbox
-                  checked={checked.Five}
-                  onClick={handleChangeFive}
+                  checked={checked.Six}
+                  onClick={handleChangeSix}
                   name="five"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                 />
@@ -274,13 +258,13 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{order[6]+': '+props.estimation.ensalada}%</span>
+                <span>{'Ensalada: '+props.estimation.ensalada.toFixed(3)}%</span>
                 <BorderLinearProgress variant="determinate" value={props.estimation.ensalada} />
               </div>
               <div className="check">
                 <Checkbox
-                  checked={checked.Five}
-                  onClick={handleChangeFive}
+                  checked={checked.Seven}
+                  onClick={handleChangeSeven}
                   name="five"
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                 />
@@ -312,9 +296,9 @@ const Result = (props) => {
               Dentro de la imagen se encuentra:
               <ul>
                 {
-                  categories.map( (category) => {
+                  categories.map( (category,index) => {
                     return (
-                    <li><strong>{category}</strong> con una cantidad calorica de {0}</li>
+                    <li key={index}><strong>{category}</strong> con una cantidad calorica de {0}</li>
                     );
                   })
                 }

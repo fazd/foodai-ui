@@ -12,21 +12,21 @@ const Appbar = () => {
             <img src={LogoWords} alt="brain-logo" width="250"/>
           </Link>
         </div>
-        <Link className="flex card-page" to="/home#demo">
+        <a className="flex card-page" href="/home">
           Inicio
-        </Link>
-        <Link className="flex card-page" to="/recipes">
+        </a>
+        <a className="flex card-page" href="/recipes">
           Mis recetas
-        </Link>
-        <Link className="flex card-page" to="/home">
+        </a>
+        <a className="flex card-page" href="/home#algorithm">
           Sobre el algoritmo
-        </Link>
-        <Link className="flex card-page" to="/home">
+        </a>
+        <a className="flex card-page" href="/home#demo">
           Demo
-        </Link>
-        <Link className="corner flex card-page" to="/login">
+        </a>
+        <a className="corner flex card-page" href="/login">
           Iniciar sesión
-        </Link>
+        </a>
       </div>
     </div>
   );
