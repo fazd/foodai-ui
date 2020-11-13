@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Register.scss";
 
 import TextField from "@material-ui/core/TextField";
@@ -9,6 +9,8 @@ import {Link} from "react-router-dom";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
+import UserContext from "../../context/UserContext";
+
 import * as RegisterService from "../../services/RegisterService";
 
 function Alert(props) {
@@ -17,13 +19,14 @@ function Alert(props) {
 
 
 
-const Register = () => {
+const Register = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConf, setPasswordConf] = useState('');
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
-
+  const setAuthState = useContext(UserContext).setAuthState;
+ 
 
   const [open, setOpen] = React.useState(false);
 
@@ -76,7 +79,6 @@ const Register = () => {
           //height: height,
           //weight: weight,
         };
-        console.log("send");
         
         RegisterService.create(body).then(
           (response) => {
@@ -85,7 +87,7 @@ const Register = () => {
               setEmail('');
               setOpen(true);
               setTimeout( ()=>{
-                window.open("/home");
+                props.history.push("/");
               }, 1500);
             }
           }

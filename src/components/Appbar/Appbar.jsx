@@ -2,8 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Appbar.scss"
 import LogoWords from "../../assets/logo-words.png";
+import * as UserService from "../../services/AuthService";
+
 
 const Appbar = () => {
+
+  const authedUser = true;
+
+
+  const handleLogout = () => {
+    UserService.logout();
+  }
+
+
   return (
     <div className="appbar-main-container">
       <div className="flex container">
@@ -15,18 +26,29 @@ const Appbar = () => {
         <a className="flex card-page" href="/home">
           Inicio
         </a>
-        <a className="flex card-page" href="/recipes">
-          Mis recetas
-        </a>
+        {
+          authedUser ? 
+          <a className="flex card-page" href="/recipes">
+            Mis recetas
+          </a>
+          : null
+        }
         <a className="flex card-page" href="/home#algorithm">
           Sobre el algoritmo
         </a>
         <a className="flex card-page" href="/home#demo">
           Demo
         </a>
-        <a className="corner flex card-page" href="/login">
-          Iniciar sesión
-        </a>
+        {
+          !authedUser ?   
+          <a className="corner flex card-page" href="/login">
+            Iniciar sesión
+          </a>
+          :
+          <div className="corner flex card-page" onClick={handleLogout}>
+            Cerrar sesión
+          </div>
+        }
       </div>
     </div>
   );
