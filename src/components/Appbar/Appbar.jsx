@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import "./Appbar.scss"
 import LogoWords from "../../assets/logo-words.png";
 import * as UserService from "../../services/AuthService";
+import UserContext from "../../context/UserContext";
 
 
 const Appbar = () => {
 
-  const authedUser = true;
-
+  const setAuthState = useContext(UserContext).setAuthState;
+  const authedUser = useContext(UserContext).authState;
 
   const handleLogout = () => {
     UserService.logout();
+    setAuthState({ user: null, reported: true });
   }
 
 

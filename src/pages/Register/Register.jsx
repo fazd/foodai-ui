@@ -76,8 +76,8 @@ const Register = (props) => {
         const body = {
           "email": email,
           "password": password,
-          //height: height,
-          //weight: weight,
+          "height": height,
+          "weight": weight,
         };
         
         RegisterService.create(body).then(
@@ -87,7 +87,9 @@ const Register = (props) => {
               setEmail('');
               setOpen(true);
               setTimeout( ()=>{
-                props.history.push("/");
+                window.location.href = '/';
+
+                //props.history.push("/");
               }, 1500);
             }
           }

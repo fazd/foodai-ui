@@ -12,7 +12,9 @@ export const create = async (body) => {
     axios.post(BASE_URL, 
       {
         "email": body.email,
-        "password": body.password
+        "password": body.password,
+        "height": body.height,
+        "weight": body.weight,
       }
       ).then(
       (res) => {

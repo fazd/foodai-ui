@@ -5,6 +5,8 @@ import Button from "@material-ui/core/Button";
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+import * as LoginService from "../../services/AuthService";
+
 import {Link} from "react-router-dom";
 
 const Login = () => {
@@ -28,11 +30,18 @@ const Login = () => {
     console.log(email);
     console.log(password);
     const body = {
-      email: email,
-      password: password,
+      "email": email,
+      "password": password,
     };
-    setPassword('');
-    setEmail('');
+
+    LoginService.login(body).then(
+      (response) => {
+        console.log(response);
+      }
+    )
+
+    //setPassword('');
+    //setEmail('');
   }
   return (
     <div className="login-main-container">
