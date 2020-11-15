@@ -6,10 +6,12 @@ const LOAD_URL = config.url.API_URL + "/load-images";
 const ESTIMATION_URL = config.url.API_URL + "/calories-estimation";
 
 
+
+
 export const uploadImage = async (body) => {
   return (
     axios.post(
-      BASE_URL, body
+      BASE_URL, body 
     ).then(
       (response) => {
         console.log(response);
