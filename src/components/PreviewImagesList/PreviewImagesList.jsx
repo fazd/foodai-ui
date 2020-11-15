@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import "./PreviewImagesList.scss";
 import PreviewImage from "../PreviewImage/PreviewImage"; 
 import Button from "@material-ui/core/Button";
-
+import Loader from "../Loader/Loader";
 
 const PreviewImagesList = (props) =>{
   
@@ -34,27 +34,33 @@ const PreviewImagesList = (props) =>{
 
   return (
     <div className="preview-main-container">
-      <div className="images">
-        {
-          photos.map( (photo) =>  {
-            return(
-              <PreviewImage key={photo.name} name={photo.name} photo={photo.img} selectCall={handlePhotosUpdate} />
-            );
-          })
-        }
-      </div>
-      <div className="btn-place">
-        <Button
-          variant="contained" 
-          className="btn-phase" 
-          component="span" 
-          onClick={handleSubmit}
-        >
-          Estimar
-        </Button>
+      {
+        props.loading ? 
+          <Loader />
+        :
+          <>
+          <div className="images">
+            {
+              photos.map( (photo) =>  {
+                return(
+                  <PreviewImage key={photo.name} name={photo.name} photo={photo.img} selectCall={handlePhotosUpdate} />
+                );
+              })
+            }
+          </div>
+          <div className="btn-place">
+            <Button
+              variant="contained" 
+              className="btn-phase" 
+              component="span" 
+              onClick={handleSubmit}
+            >
+              Estimar
+            </Button>
 
-      </div>
-      
+          </div>
+          </>
+      }
     </div>
   );
 };

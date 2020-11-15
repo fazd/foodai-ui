@@ -1,9 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import "./Appbar.scss"
 import LogoWords from "../../assets/logo-words.png";
+import * as UserService from "../../services/AuthService";
+import UserContext from "../../context/UserContext";
+
 
 const Appbar = () => {
+
+  const setAuthState = useContext(UserContext).setAuthState;
+  const authedUser = useContext(UserContext).authState;
+
+  const handleLogout = () => {
+    UserService.logout();
+    setAuthState({ user: null, reported: true });
+  }
+
+
   return (
     <div className="appbar-main-container">
       <div className="flex container">
@@ -12,21 +25,32 @@ const Appbar = () => {
             <img src={LogoWords} alt="brain-logo" width="250"/>
           </Link>
         </div>
-        <Link className="flex card-page" to="/home#demo">
+        <a className="flex card-page" href="/home">
           Inicio
-        </Link>
-        <Link className="flex card-page" to="/recipes">
-          Mis recetas
-        </Link>
-        <Link className="flex card-page" to="/home">
+        </a>
+        {
+          authedUser ? 
+          <a className="flex card-page" href="/recipes">
+            Mis recetas
+          </a>
+          : null
+        }
+        <a className="flex card-page" href="/home#algorithm">
           Sobre el algoritmo
-        </Link>
-        <Link className="flex card-page" to="/home">
+        </a>
+        <a className="flex card-page" href="/home#demo">
           Demo
-        </Link>
-        <Link className="corner flex card-page" to="/login">
-          Iniciar sesión
-        </Link>
+        </a>
+        {
+          !authedUser ?   
+          <a className="corner flex card-page" href="/login">
+            Iniciar sesión
+          </a>
+          :
+          <div className="corner flex card-page" onClick={handleLogout}>
+            Cerrar sesión
+          </div>
+        }
       </div>
     </div>
   );
