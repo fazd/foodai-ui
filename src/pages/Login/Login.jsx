@@ -57,6 +57,7 @@ const Login = () => {
           localStorage.setItem("token", response.access_token);
           localStorage.setItem("user", body.email);
           setAuthState({user: email, reported: true});
+          console.log(setAuthState.authState);
           window.location.href = '/';
         }
         else{
@@ -106,9 +107,6 @@ const Login = () => {
           Iniciar sesión
         </Button>
         <div className="messages">
-          <Link className="link" to="passwordRecovery">
-            <span>Olvidaste la contraseña?</span>
-          </Link>
           <Link className="link right" to="register">
             <span>No tienes cuenta? Registrate</span>
           </Link>

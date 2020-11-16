@@ -118,6 +118,15 @@ const Home = () => {
               <li>Subir la imagen que desees tamaño minimo: 960x960 pixeles</li>
               <li>Selecciona las imagenes que contengan la comida que desees analizar</li>
               <li>Presiona el botón de estimar</li>
+              <li>Se te mostrarán las categorias estimadas por nuestro modelo, sin embargo, por favor 
+                marca las categorias que son correctas para un mejor estimado
+              </li>
+              <li>
+                Presiona en estimar calorias para obtener el resultado final
+              </li>
+              <li>
+                Presiona el botón de guardar para registrar tus resultados 
+              </li>
             </ol>
           </div>
           <ImageUploader />

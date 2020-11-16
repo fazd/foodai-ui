@@ -19,7 +19,8 @@ function App() {
   });
 
   const requireLogin = (Component) => {
-    if(authState.reported && authState.user){
+    console.log(authState);
+    if(localStorage.getItem("token")){
       return <Component />;
     }
     else{

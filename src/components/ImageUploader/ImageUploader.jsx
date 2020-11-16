@@ -16,11 +16,12 @@ const ImageUploader = (props) => {
   const [imageList, setImageList] = useState([]);
   const [estimation, setEstimation] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [imgName, setImageName] = useState('');
 
 
   const handleFile = (event) => {
     console.log(event.target.files[0]);
+    setImageName(event.target.files[0].name);
     setImgFile(event.target.files[0]);
     setImg(URL.createObjectURL(event.target.files[0]));
     console.log(image);
@@ -101,7 +102,7 @@ const ImageUploader = (props) => {
         : ( phase === 1 ?  
             <PreviewImagesList key={imageList.length} loading={loading} imageList={imageList} next={handleImageList} />
           : (
-            <Result img={image} estimation={estimation}/> 
+            <Result img={image} estimation={estimation} imgName={imgName}/> 
           )
         )}
 

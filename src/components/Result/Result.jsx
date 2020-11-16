@@ -54,16 +54,17 @@ const Result = (props) => {
   const [categories, setCategories] = useState([]);
   const [estimation, setEstimation] = useState(false);
   const [total, setTotal] = useState(0);
-  const [disabled, setDisabled] = useState(true);
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
+    setOpen2(false);
+
   };
 
   const handleChangeOne = (event) => {
@@ -178,6 +179,59 @@ const Result = (props) => {
     }
   }
 
+
+  const handleSave = () => {
+    let categoriesAux = [];
+    if(checked.One){
+      categoriesAux.push(order[0]);
+    }
+    if(checked.Two){
+      categoriesAux.push(order[1]);
+    }
+    if(checked.Three){
+      categoriesAux.push(order[2]);
+    }
+    if(checked.Four){
+      categoriesAux.push(order[3]);
+    }
+    if(checked.Five){
+      categoriesAux.push(order[4]);
+    }
+    if(checked.Six){
+      categoriesAux.push(order[5]);
+    }
+    if(checked.Seven){
+      categoriesAux.push(order[6]);
+    }
+    setCategories(categoriesAux);
+    
+    if(categoriesAux.length <= 0){
+      setOpen(true);
+    }
+    else{
+      const user = localStorage.getItem("user");
+      const img_name =  props.imgName;
+      const cat = categoriesAux;
+      const body = {
+        "user": user,
+        "img_name": img_name,
+        "cat": cat,
+      }
+      console.log(body);
+
+      ImageService.saveImage(body).then(
+        (response) => {
+          console.log(response);
+          setOpen2(true);
+        }
+      )
+
+
+    }
+    
+    
+
+  }
 
 
   return(
@@ -299,6 +353,8 @@ const Result = (props) => {
             <Button
               variant="contained" 
               className="btn-upload"
+              onClick={handleSave}
+              disabled={!localStorage.getItem("user")}
             >
               Guardar imagen
             </Button>
@@ -316,24 +372,27 @@ const Result = (props) => {
             Selecciona al menos una Categoria
           </Alert>
         </Snackbar>
+        <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="sucess">
+            La imagen ha sido guardada exitosamente
+          </Alert>
+        </Snackbar>
       </div>
       {estimation ? 
         <div id="prediction">
           <div id="text">
             <h2>Resultados:</h2>
-            <p>
               Dentro de la imagen se encuentra:
               <ul>
                 {
                   categories.map( (category,index) => {
                     return (
-                    <li key={index}><strong>{category}</strong> con una cantidad calorica de {0}</li>
+                    <li key={index}><strong>{category}</strong></li>
                     );
                   })
                 }
               </ul>
               Para un total de {total} calorias en una porción.
-            </p>
           </div>
           <div className="cicr-prog">
             <CircularProgressbar value={total} text={`${total} Cal`} className="circ-bar" />
