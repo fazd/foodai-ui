@@ -18,6 +18,7 @@ const ImageUploader = (props) => {
   const [loading, setLoading] = useState(false);
 
 
+
   const handleFile = (event) => {
     console.log(event.target.files[0]);
     setImgFile(event.target.files[0]);
@@ -88,7 +89,7 @@ const ImageUploader = (props) => {
                 variant="contained" 
                 className="btn-upload mar" 
                 onClick={handleSubmit}
-                active={image}
+                disabled={!image}
               >
                 Continuar
               </Button>

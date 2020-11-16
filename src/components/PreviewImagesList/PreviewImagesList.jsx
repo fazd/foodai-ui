@@ -3,11 +3,30 @@ import "./PreviewImagesList.scss";
 import PreviewImage from "../PreviewImage/PreviewImage"; 
 import Button from "@material-ui/core/Button";
 import Loader from "../Loader/Loader";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const PreviewImagesList = (props) =>{
   
   const [selectedPhotos, setSelectedPhotos] = useState([]);
   const [photos, setPhotos] = useState([]);
+  const [disabled, setDisabled] = useState(true);
+  const [open, setOpen] = useState(false);
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   useEffect(() =>{
     setPhotos(props.imageList);
@@ -23,13 +42,26 @@ const PreviewImagesList = (props) =>{
     else{
       aux.push(data);
     }
+    console.log(aux.length);
+    if(aux.lenght <= 0){
+      setDisabled(true);
+    }else{
+      setDisabled(false);
+    }
     setSelectedPhotos(aux);
+
   }
 
 
   const handleSubmit = () =>{
-    console.log(selectedPhotos);
-    props.next(selectedPhotos);
+    if(selectedPhotos.length === 0){
+      setOpen(true);
+    }
+    else{
+      console.log(selectedPhotos);
+      props.next(selectedPhotos);
+
+    }
   }
 
   return (
@@ -54,11 +86,17 @@ const PreviewImagesList = (props) =>{
               className="btn-phase" 
               component="span" 
               onClick={handleSubmit}
+              disabled={disabled}
             >
               Estimar
             </Button>
 
           </div>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+              Selecciona al menos una imagen
+            </Alert>
+          </Snackbar>
           </>
       }
     </div>

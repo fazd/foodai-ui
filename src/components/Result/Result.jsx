@@ -4,6 +4,9 @@ import DefaultImage from "../../assets/defaultImage.jpg";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from "@material-ui/core/Button";
 import Checkbox from '@material-ui/core/Checkbox';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
 import { CircularProgressbar } from 'react-circular-progressbar';
 
 import * as ImageService from "../../services/ImageService";
@@ -11,6 +14,12 @@ import * as ImageService from "../../services/ImageService";
 
 import 'react-circular-progressbar/dist/styles.css';
 import "./Result.scss"
+
+
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 
 const BorderLinearProgress = withStyles((theme) => ({
@@ -45,8 +54,17 @@ const Result = (props) => {
   const [categories, setCategories] = useState([]);
   const [estimation, setEstimation] = useState(false);
   const [total, setTotal] = useState(0);
+  const [disabled, setDisabled] = useState(true);
+  const [open, setOpen] = useState(false);
 
-  
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleChangeOne = (event) => {
     //event.persist();
@@ -142,16 +160,22 @@ const Result = (props) => {
       categoriesAux.push(order[6]);
     }
     setCategories(categoriesAux);
-    const formData = new FormData();
-    formData.append("check",categoriesAux );
-    ImageService.getEstimation(formData).then(
-      (response) => {
-        console.log(response);
-        setTotal(response);
-      } 
-    );
-
-    setEstimation(true);
+    
+    if(categoriesAux.length <= 0){
+      setOpen(true);
+    }
+    else{
+      const formData = new FormData();
+      formData.append("check",categoriesAux );
+      ImageService.getEstimation(formData).then(
+        (response) => {
+          console.log(response);
+          setTotal(response);
+        } 
+      );
+  
+      setEstimation(true);
+    }
   }
 
 
@@ -287,6 +311,11 @@ const Result = (props) => {
             </Button>
           </div>
         </div>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error">
+            Selecciona al menos una Categoria
+          </Alert>
+        </Snackbar>
       </div>
       {estimation ? 
         <div id="prediction">
