@@ -20,6 +20,7 @@ export const create = async (body) => {
       (res) => {
         console.log(res);
         localStorage.setItem("token", res.data.access_token);
+        localStorage.setItem("user", body.email);
         return res.data;
       }
     ).catch(

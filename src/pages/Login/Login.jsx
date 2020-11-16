@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./Login.scss";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import * as LoginService from "../../services/AuthService";
-
+import UserContext from "../../context/UserContext";
 import {Link} from "react-router-dom";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const setAuthState = useContext(UserContext).setAuthState;
+  const [open, setOpen] = useState(false);
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
 
   const handleEmailChange = (e) => {
     e.persist();
@@ -37,6 +53,16 @@ const Login = () => {
     LoginService.login(body).then(
       (response) => {
         console.log(response);
+        if(response){
+          localStorage.setItem("token", response.access_token);
+          localStorage.setItem("user", body.email);
+          setAuthState({user: email, reported: true});
+          window.location.href = '/';
+        }
+        else{
+          setOpen(true);
+          console.log("Login failed");
+        }
       }
     )
 
@@ -88,6 +114,11 @@ const Login = () => {
           </Link>
         </div>
       </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          Error en usuario o Contraseña
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

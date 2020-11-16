@@ -1,11 +1,16 @@
-import React, {useLayoutEffect, useRef, useState, useEffect } from "react";
+import React, {useLayoutEffect, useEffect, useRef, useState, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
+import UserContext from "../../context/UserContext";
+
+import * as Api from "../../services/AuthService";
+
 import "./Home.scss";
+
+
 import Logo from "../../assets/logo-brain-2.svg";
 import LogoWords from "../../assets/caloriapp.png";
 
-import DefaultImage from "../../assets/defaultImage.jpg";
 import Image1 from "../../assets/sample_images/image1.jpg";
 import Image2 from "../../assets/sample_images/image2.jpg";
 import Image3 from "../../assets/sample_images/image3.jpg";
@@ -16,6 +21,9 @@ import Image7 from "../../assets/sample_images/image7.jpg";
 
 const Home = () => {
 
+  const setAuthState = useContext(UserContext).setAuthState;
+ 
+
   const firstRef = useRef(null);
   const secondRef = useRef(null);
   const thirdRef = useRef(null); 
@@ -23,70 +31,36 @@ const Home = () => {
 
   const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
 
-  const [show, setShow] = useState(
-    {itemOne: 1, 
-      itemTwo: 1, 
-      itemThree: 1
-    });
-
     const [scrolled, setScrolled] = useState(false);
     useLayoutEffect(() => {
       if(window.scrollY > 0){
         setScrolled(true);
-        console.log('Is scrolled');
       }
-
-      const topPos = element => element.getBoundingClientRect().top;
-      const botPos = element => element.getBoundingClientRect().bottom;
-      const div1PosTop = topPos(firstRef.current);
-      const div2PosTop = topPos(secondRef.current);
-      const div3PosTop = topPos(thirdRef.current);
-
-      const div1PosBot = botPos(firstRef.current);
-      const div2PosBot = botPos(secondRef.current);
-      const div3PosBot = botPos(thirdRef.current);
-      
-      const pend1 = 1/(div1PosBot - div1PosTop)
-      const pend2 = 1/(div2PosBot - div2PosTop)
-      const pend3 = 1/(div3PosBot - div3PosTop)
 
       const onScroll = () => {
         if(window.scrollY >=20){
           setScrolled(true);
-          console.log('Is scrolled');
         }
         else if (window.scrollY < 20){
           setScrolled(false);
-          console.log('No more scrolled');
-
-        }
-
-
-        const scrollPos = window.scrollY;
-        if (div1PosTop < scrollPos) {
-          const value = 1 - Math.min((scrollPos - div1PosTop)*pend1,1);
-          setShow(state => ({ ...state, itemOne: value }));
-        }
-        if (div2PosTop < scrollPos) {
-          const value = 1 - Math.min((scrollPos - div2PosTop)*pend2,1);
-          setShow(state => ({ ...state, itemTwo: value }));
-        }
-        if (div3PosTop < scrollPos) {
-          const value = 1 - Math.min((scrollPos - div3PosTop)*pend3,1);
-          setShow(state => ({ ...state, itemThree: value }));
         }
       };
-  
+      
       window.addEventListener("scroll", onScroll);
       return () => window.removeEventListener("scroll", onScroll);
     }, []);
  
+  useEffect(() => {
+    if(Api.autoLogin){
+      setAuthState({ user: localStorage.getItem("user"), reported: true });      
+    }
+  }, [localStorage.getItem("token")]);
+
   return (
     <div className="home-main-container">
       <div className="leftsize">
         <div ref={firstRef} 
           className="container"
-          // style={{opacity: show.itemOne }}
           id="presentation">
           <div className="big-logo">
             <img src={Logo} alt="brain" height="200"/>
@@ -118,7 +92,6 @@ const Home = () => {
           ref={secondRef} 
           className="container"
           id="algorithm"
-          // style={{opacity: show.itemTwo}} 
         >
           <div className="title">
             <span className="about-word">Sobre </span> 
@@ -132,7 +105,6 @@ const Home = () => {
           ref={thirdRef} 
           className="container"
           id="demo"
-          // style={{opacity: show.itemThree }}
         >
           <div className="title">
             <img src={LogoWords} alt="logo" className="demo-logo" height="100" width="400"/>

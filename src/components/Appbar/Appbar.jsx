@@ -14,6 +14,8 @@ const Appbar = () => {
   const handleLogout = () => {
     UserService.logout();
     setAuthState({ user: null, reported: true });
+    console.log(authedUser);
+    window.location.href = '/';
   }
 
 
@@ -29,7 +31,7 @@ const Appbar = () => {
           Inicio
         </a>
         {
-          authedUser ? 
+          authedUser.user ? 
           <a className="flex card-page" href="/recipes">
             Mis recetas
           </a>
@@ -42,7 +44,7 @@ const Appbar = () => {
           Demo
         </a>
         {
-          !authedUser ?   
+          !authedUser.user ?   
           <a className="corner flex card-page" href="/login">
             Iniciar sesión
           </a>

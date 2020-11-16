@@ -1,6 +1,4 @@
 import React from "react";
-import IconButton from '@material-ui/core/IconButton';
-import Github from "../../assets/github.svg";
 
 import "./Footer.scss";
 const Footer = () => {

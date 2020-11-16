@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState,  useContext } from "react";
 import "./Register.scss";
 
 import TextField from "@material-ui/core/TextField";
@@ -28,11 +28,9 @@ const Register = (props) => {
   const setAuthState = useContext(UserContext).setAuthState;
  
 
-  const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const [open, setOpen] = useState(false);
+
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -86,6 +84,7 @@ const Register = (props) => {
               setPassword('');
               setEmail('');
               setOpen(true);
+              setAuthState({ user: email, reported: true });
               setTimeout( ()=>{
                 window.location.href = '/';
 

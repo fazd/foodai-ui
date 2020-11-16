@@ -13,8 +13,7 @@ axios.defaults.headers.common = {
 export const  login = async (body) => {
   return axios.post(BASE_URL, body).then(
     (res) => {
-      console.log("res from login", res);
-      return res;
+      return res.data;
     }
   ).catch(
     (error) => {
@@ -27,24 +26,8 @@ export const  login = async (body) => {
 // Only verify if token exists, then verify is token 
 // is still valid 
 
-export const autoLogin = async () => {
-  const token = localStorage.getItem("token");
-  if(token){
-    return await axios.post(
-      "/check/"+BASE_URL,
-      {},
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    ).then(
-      (response) => {
-        console.log(response);
-        return response;
-      }
-    );
-  }
+export const autoLogin = () => {
+  return  localStorage.getItem("token");
 };
 
 
@@ -52,4 +35,5 @@ export const autoLogin = async () => {
 
 export const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("user");
 };
