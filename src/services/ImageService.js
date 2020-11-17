@@ -5,7 +5,7 @@ const BASE_URL = config.url.API_URL + "/upload-image";
 const LOAD_URL = config.url.API_URL + "/load-images";
 const ESTIMATION_URL = config.url.API_URL + "/calories-estimation";
 const SAVE_URL = config.url.API_URL + "/save-food-image";
-const GET_IMGS_URL = config.url.API_URL + "/get-images";
+const GET_IMGS_URL = config.url.API_URL + "/get-food-image";
 
 
 
@@ -69,7 +69,7 @@ export const getImages = async (body) => {
   return(
     axios.post(GET_IMGS_URL, body).then(
       (response) => {
-        return response.data;
+        return response.data.result;
       }
     ).catch (error => {
       return error;

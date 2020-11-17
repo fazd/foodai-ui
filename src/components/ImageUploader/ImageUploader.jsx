@@ -20,11 +20,13 @@ const ImageUploader = (props) => {
 
 
   const handleFile = (event) => {
-    console.log(event.target.files[0]);
-    setImageName(event.target.files[0].name);
-    setImgFile(event.target.files[0]);
-    setImg(URL.createObjectURL(event.target.files[0]));
-    console.log(image);
+    if(event.target && event.target.files[0]){
+      console.log(event.target.files[0]);
+      setImageName(event.target.files[0].name);
+      setImgFile(event.target.files[0]);
+      setImg(URL.createObjectURL(event.target.files[0]));
+      console.log(image);
+    }
   } 
 
   const handleSubmit = () =>{

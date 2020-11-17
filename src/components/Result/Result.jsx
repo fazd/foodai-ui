@@ -373,7 +373,7 @@ const Result = (props) => {
           </Alert>
         </Snackbar>
         <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="sucess">
+          <Alert onClose={handleClose} severity="success">
             La imagen ha sido guardada exitosamente
           </Alert>
         </Snackbar>
