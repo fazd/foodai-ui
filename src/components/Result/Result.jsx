@@ -246,7 +246,7 @@ const Result = (props) => {
         <div className="results">
           <div className="result-header">
             <span>
-              Categorias
+              Categorías
             </span>
           </div>
           <div className="result-table">            
@@ -322,7 +322,7 @@ const Result = (props) => {
             </div>
             <div className="result-cat">
               <div className="bar">
-                <span>{'Salmon: '+props.estimation.salmon.toFixed(3)}%</span>
+                <span>{'Salmón: '+props.estimation.salmon.toFixed(3)}%</span>
                 <BorderLinearProgress variant="determinate" value={props.estimation.salmon} />
               </div>
               <div className="check">
@@ -363,7 +363,7 @@ const Result = (props) => {
               className="btn-upload"
               onClick={handleEstimate}
             >
-              Estimar calorias
+              Estimar calorías
             </Button>
           </div>
         </div>
@@ -382,6 +382,21 @@ const Result = (props) => {
         <div id="prediction">
           <div id="text">
             <h2>Resultados:</h2>
+              <strong>Nota importante:</strong>
+              <p>
+                Para estos calculos estamos asumiendo que la cantidad de comida corresponde a una porcion personal
+                con los siguientes valores: 
+              </p>
+              <ul>
+                <li>Carne: 260 cal en 150g</li>
+                <li>Pollo: 192 cal en 150g</li>
+                <li>Arroz: 215 cal en 175g</li>
+                <li>Pasta: 131 cal en 100g</li>
+                <li>Puré: 88 cal en 100g</li>
+                <li>Salmón: 201 cal en 198g</li>
+                <li>Ensalada: 35 cal en 57g</li>
+              </ul>
+
               Dentro de la imagen se encuentra:
               <ul>
                 {

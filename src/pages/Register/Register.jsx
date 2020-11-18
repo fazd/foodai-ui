@@ -142,7 +142,7 @@ const Register = (props) => {
         <div className="imc">
           <TextField
             id="outlined-height-input"
-            label="Altura *"
+            label="Altura (cm) *"
             type="number"
             className="text-field double"
             variant="outlined"
@@ -153,7 +153,7 @@ const Register = (props) => {
           />
           <TextField
             id="outlined-weight-input"
-            label="Peso *"
+            label="Peso (Kg)*"
             type="number"
             className="text-field double"
             variant="outlined"

@@ -18,7 +18,7 @@ import Image4 from "../../assets/sample_images/image4.jpg";
 import Image5 from "../../assets/sample_images/image5.jpg";
 import Image6 from "../../assets/sample_images/image6.jpg";
 import Image7 from "../../assets/sample_images/image7.jpg";
-
+import Model from "../../assets/model.jpeg";
 const Home = () => {
 
   const setAuthState = useContext(UserContext).setAuthState;
@@ -59,73 +59,88 @@ const Home = () => {
   return (
     <div className="home-main-container">
       <div className="leftsize">
-        <div ref={firstRef} 
-          className="container"
-          id="presentation">
+        <div ref={firstRef} className="container" id="presentation">
           <div className="big-logo">
-            <img src={Logo} alt="brain" height="200"/>
+            <img src={Logo} alt="brain" height="200" />
           </div>
           <div className="flex pres-body">
-            <div className="text">
-              Conoce nuestro método de a base de reconocimiento 
-              de imagenes usando deep learning para 
-              la clasificación de alimentos y estimación de calorias 
+            <div className="text" id="pres">
+              Conoce nuestro método de reconocimiento de imágenes usando Deep
+              Learning para la clasificación de alimentos y estimación de
+              calorias
             </div>
             <div className="btn-group">
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 className="btn-demo"
-                onClick={()=>scrollToRef(secondRef)}>
-                  Conoce nuestro método
+                onClick={() => scrollToRef(secondRef)}
+              >
+                Conoce nuestro método
               </Button>
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 className="btn-demo"
-                onClick={()=>scrollToRef(thirdRef)}>
-                  Demo
+                onClick={() => scrollToRef(thirdRef)}
+              >
+                Demo
               </Button>
             </div>
           </div>
         </div>
         {/* Here goes the about section */}
-        <div 
-          ref={secondRef} 
-          className="container"
-          id="algorithm"
-        >
+        <div ref={secondRef} className="container" id="algorithm">
           <div className="title">
-            <span className="about-word">Sobre </span> 
-            <img src={LogoWords} alt="logo" height="100" width="400"/>
+            <span className="about-word">Sobre </span>
+            <img src={LogoWords} alt="logo" height="100" width="400" />
           </div>
           <div className="text">
-            <p>Lorem ipsum</p>
+            <p>
+              Caloriapp es un modelo de red neuronal convolucional propuesto
+              para la estimación de calorías en un plato de comida basado en la
+              identificación y clasificación de alimentos presentes en él. Para
+              esto, utilizamos como punto de partida el modelo VGG16 de Deep
+              Learning para el entrenamiento de las capas iniciales de la red y,
+              posteriormente el modelo finaliza con tres capas densas arrojando
+              como resultado los porcentajes de clasificación/identificación de
+              los alimentos.
+            </p>
+            <img src={Model} alt=""/>
           </div>
         </div>
-        <div 
-          ref={thirdRef} 
-          className="container"
-          id="demo"
-        >
+        <div ref={thirdRef} className="container" id="demo">
           <div className="title">
-            <img src={LogoWords} alt="logo" className="demo-logo" height="100" width="400"/>
-            <span className="about-word">Demo</span> 
+            <img
+              src={LogoWords}
+              alt="logo"
+              className="demo-logo"
+              height="100"
+              width="400"
+            />
+            <span className="about-word">Demo</span>
           </div>
           <div className="text-demo">
-            <p>
-              Prueba nuestro demo siguiendo los siguientes pasos:
-            </p>
+            <p>Prueba nuestro demo con los siguientes pasos:</p>
             <ol>
-              <li>Subir la imagen que desees tamaño minimo: 960x960 pixeles</li>
-              <li>Selecciona las imagenes que contengan la comida que desees analizar</li>
-              <li>Presiona el botón de estimar</li>
-              <li>Se te mostrarán las categorias estimadas por nuestro modelo, sin embargo, por favor 
-                marca las categorias que son correctas para un mejor estimado
+              <li>Subir una imagen de mínimo: 960x960 pixeles.</li>
+              <li>
+                Selecciona las imágenes que contengan la comida que desees
+                analizar.
               </li>
               <li>
-                Presiona en estimar calorias para obtener el resultado final
+                Presiona el botón <strong>estimar</strong>.
               </li>
               <li>
-                Presiona el botón de guardar para registrar tus resultados 
+                El modelo presentará los porcentajes de clasificación por cada
+                categoría. Selecciona los alimentos que sí estén presentes en la
+                imagen.
+              </li>
+              <li>
+                Presiona el botón <strong>estimar calorías</strong> para obtener
+                el resultado final.
+              </li>
+              <li>
+                (Sólo para usuarios registrados) Presiona el botón de{" "}
+                <strong>guardar imagen</strong> para almacenar tus resultados.
               </li>
             </ol>
           </div>
@@ -133,31 +148,27 @@ const Home = () => {
         </div>
       </div>
       <div className="rightside">
-        <div 
-          ref={fourthRef} 
-          className="container"
-          id="imagesPreviews"
-        >
-          <div className={`image-ball ${scrolled? "move-1" : ""}`} id="img-1">
-            <img src={Image1} alt=""/> 
+        <div ref={fourthRef} className="container" id="imagesPreviews">
+          <div className={`image-ball ${scrolled ? "move-1" : ""}`} id="img-1">
+            <img src={Image1} alt="" />
           </div>
-          <div className={`image-ball ${scrolled? "move-2" : ""}`} id="img-2">
-            <img src={Image2} alt=""/> 
+          <div className={`image-ball ${scrolled ? "move-2" : ""}`} id="img-2">
+            <img src={Image2} alt="" />
           </div>
-          <div className={`image-ball ${scrolled? "move-3" : ""}`} id="img-3">
-            <img src={Image3} alt=""/> 
+          <div className={`image-ball ${scrolled ? "move-3" : ""}`} id="img-3">
+            <img src={Image3} alt="" />
           </div>
-          <div className={`image-ball ${scrolled? "move-4" : ""}`} id="img-4">
-            <img src={Image4} alt=""/> 
+          <div className={`image-ball ${scrolled ? "move-4" : ""}`} id="img-4">
+            <img src={Image4} alt="" />
           </div>
-          <div className={`image-ball ${scrolled? "move-5" : ""}`} id="img-5">
-            <img src={Image5} alt=""/> 
+          <div className={`image-ball ${scrolled ? "move-5" : ""}`} id="img-5">
+            <img src={Image5} alt="" />
           </div>
-          <div className={`image-ball ${scrolled? "move-6" : ""}`} id="img-6">
-            <img src={Image6} alt=""/> 
+          <div className={`image-ball ${scrolled ? "move-6" : ""}`} id="img-6">
+            <img src={Image6} alt="" />
           </div>
-          <div className={`image-ball ${scrolled? "move-7" : ""}`} id="img-7">
-            <img src={Image7} alt=""/> 
+          <div className={`image-ball ${scrolled ? "move-7" : ""}`} id="img-7">
+            <img src={Image7} alt="" />
           </div>
         </div>
       </div>

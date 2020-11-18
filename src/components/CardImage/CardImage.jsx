@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import "./CardImage.scss";
-import Default from "../../assets/defaultImage.jpg";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
